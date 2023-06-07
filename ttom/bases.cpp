@@ -1,3 +1,73 @@
+void anime_g(int a[11][13],int n, int i, int color, int colnow)
+{
+	int times, j;
+	for (times = (i - n) * 4; times > 0; times--)
+	{
+		cct_setcolor(15, 15);
+		for (j = 0; j < 3; j++)
+		{
+			cct_gotoxy(4 + (colnow - 1) * 8, 3 + (i - 1) * 4 - times + j);
+			cout << "      ";
+		}
+
+		cct_setcolor(color, 0);
+		for (j = 0; j < 3; j++)
+		{
+			cct_gotoxy(4 + (colnow - 1) * 8, 4 + (i - 1) * 4 - times + j);
+			if (j == 0)
+				cout << "┏" << "━" << "┓";
+			else if (j == 1)
+				cout << "┃" << /*"★"*/a[i][colnow] << "┃";
+			else
+				cout << "┗" << "━" << "┛";
+		}
+		if ((times - 1) % 4 == 0)
+		{
+			cct_setcolor(15, 0);
+			cct_gotoxy(4 + (colnow - 1) * 8, 3 + (i - 1) * 4 - times);
+			cout << "━━━";
+		}
+		Sleep(1);
+	}
+	Sleep(1);
+}
+
+void anime_moveleft_g(int n, int j, int color, int rownow)
+{
+	int times, i;
+	for (times = (j - n) * 8; times > 0; times--)
+	{
+		cct_setcolor(15, 15);
+		cct_setcolor(15, 0);
+for (i = 0; i < 3; i++)
+{
+    cct_gotoxy(4 + (n - 1) * 8 - times + 8, 4 + (rownow - 1) * 4 + i);
+    cout << "        ";
+}
+
+		for (i = 0; i < 3; i++)
+		{
+			cct_gotoxy(4 + (n - 1) * 8 - times, 4 + (rownow - 1) * 4 + i);
+			cout << "        ";
+		}
+
+		for (i = 0; i < 3; i++)
+		{
+			cct_setcolor(color, 0);
+			cct_gotoxy(4 + (j - 1) * 8 - times, 4 + (rownow - 1) * 4 + i);
+			if (i == 0)
+				cout << "┏" << "━━━" << "┓";
+			else if (i == 1)
+				cout << "┃" << "  ★   " << "┃";
+			else
+				cout << "┗" << "━━━" << "┛";
+		}
+
+
+		Sleep(1);
+	}
+	Sleep(1);
+}
 // 將 map 數據拷貝到 a 陣列
 void copyMapToArray(int map[10][12], int a[11][13])
 {
